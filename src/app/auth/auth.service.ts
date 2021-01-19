@@ -1,4 +1,4 @@
-import { SetUserAction } from './auth.accions';
+import { SetUserAction, UnsetUserAction } from './auth.accions';
 import { User } from './user.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.accions';
 import { Subscription } from 'rxjs';
+import { UnsetItemsActions } from '../ingreso-egreso/ingreso-egreso.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ import { Subscription } from 'rxjs';
 export class AuthService {
 
   private userSubscription: Subscription = new Subscription();
+  private usuario: User;
 
   constructor(private afAuth: AngularFireAuth,
               private router: Router,
@@ -34,9 +36,11 @@ export class AuthService {
 
                 const newUser = new User(resp);
                 this.store.dispatch( new SetUserAction(newUser) );
+                this.usuario = newUser;
               });
       }
       else {
+        this.usuario = null;
         this.userSubscription.unsubscribe();
       }
     });
@@ -94,6 +98,8 @@ export class AuthService {
 
     this.afAuth.auth.signOut();
     this.router.navigate(['/login']);
+
+    this.store.dispatch( new UnsetUserAction());
   }
 
   isAuth(){
@@ -109,4 +115,7 @@ export class AuthService {
     );
   }
 
+  getUsuario() {
+    return { ... this.usuario };
+  }
 }

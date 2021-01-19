@@ -2,6 +2,7 @@ import { User } from './user.model';
 import { Action } from '@ngrx/store';
 
 export const SET_USER = '[Auth] Set user';
+export const UNSET_USER = '[Auth] Unset user'
 
 export class SetUserAction implements Action{
     
@@ -10,4 +11,10 @@ export class SetUserAction implements Action{
     constructor(public user: User){}
 }
 
-export type acciones = SetUserAction;
+export class UnsetUserAction implements Action{
+    
+    readonly type = UNSET_USER;
+
+}
+
+export type acciones = SetUserAction | UnsetUserAction;
