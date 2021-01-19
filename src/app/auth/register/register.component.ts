@@ -2,6 +2,8 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
 
 @Component({
   selector: 'app-register',
@@ -13,9 +15,16 @@ export class RegisterComponent implements OnInit {
   name: string;
   password: string;
 
-  constructor( private authService: AuthService ) { }
+  cargando: boolean;
+
+  constructor( private authService: AuthService,
+                private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.store.select('ui')
+          .subscribe( ui => {
+            this.cargando = ui.isLoading;
+          });
   }
 
 
