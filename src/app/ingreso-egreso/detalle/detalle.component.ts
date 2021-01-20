@@ -1,3 +1,4 @@
+import { AppStateExtends } from './../ingreso-egreso.reducer';
 import { IngresoEgresoService } from './../ingreso-egreso.service';
 import { Subscription } from 'rxjs';
 import { IngresoEgresoModel } from './../ingreso-egreso.model';
@@ -15,7 +16,7 @@ export class DetalleComponent implements OnInit, OnDestroy {
   items: IngresoEgresoModel[];
   subscription: Subscription = new Subscription();
 
-  constructor( private store: Store<AppState>,
+  constructor( private store: Store<AppStateExtends>,
                 private service: IngresoEgresoService) { }
 
   ngOnInit(): void {

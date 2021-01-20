@@ -1,9 +1,15 @@
+
+import { AppState } from 'src/app/app.reducer';
 import { IngresoEgresoModel } from './ingreso-egreso.model';
 
 import * as fromIE from './ingreso-egreso.actions';
 
 export interface IngresoEgresoState {
     items: IngresoEgresoModel[];
+}
+
+export interface AppStateExtends extends AppState {
+    ingresoEgreso: IngresoEgresoState;
 }
 
 const estadoInicial: IngresoEgresoState = {
