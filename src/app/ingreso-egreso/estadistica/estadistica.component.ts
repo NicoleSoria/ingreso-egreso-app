@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
-import { SingleDataSet, Label } from 'ng2-charts';
+import { SingleDataSet, Label, Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-estadistica',
@@ -23,6 +23,10 @@ export class EstadisticaComponent implements OnInit {
   public doughnutChartLabels: Label[] = ['Ingresos', 'Egresos'];
   public doughnutChartData: number[] = [];
 
+  public doughnutChartColors: Color[] = [
+    {backgroundColor:["#06B62B", "#dc3545"]},
+  ];
+  
   constructor(private store: Store<AppStateExtends>) { }
 
   ngOnInit(): void {

@@ -2,9 +2,11 @@
     <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Detalle de ingreso egreso</h4>
+            <div style="background-color: #BAC8CB; padding: 0.5rem 0 0.3rem 0.6rem;">
+              <h4 class="card-title">Detalle de ingreso egreso</h4>
+            </div>
 
-            <table class="table">
+            <table class="table mt-3">
               <thead>
                 <tr>
                   <th>Descripción</th>
@@ -19,8 +21,8 @@
                   <td>{{item.descripcion}}</td>
                   <td>{{item.monto | currency}}</td>
                   <td>
-                    <span [ngClass]="{'badge bg-success': item.tipo === 'ingreso',
-                                      'badge bg-danger': item.tipo === 'egreso'}">
+                    <span [ngClass]="{'text-success': item.tipo === 'ingreso',
+                                      'text-danger': item.tipo === 'egreso'}">
                             {{item.tipo}}
                     </span>
 

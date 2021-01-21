@@ -8,7 +8,12 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  styles: [`
+    .activo {
+      background-color: #00e4d0
+    } 
+  `]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 

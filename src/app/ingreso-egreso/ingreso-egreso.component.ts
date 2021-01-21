@@ -34,6 +34,7 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       'descripcion': new FormControl('', Validators.required),
       'monto': new FormControl(0, Validators.min(0)),
+      'tipo': new FormControl('', Validators.required)
     });
   }
 
@@ -42,8 +43,9 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    console.log(this.form)
     this.store.dispatch( new ActivarLoadingAction() );
-    const ingresoEgreso = new IngresoEgresoModel({ ... this.form.value, tipo: this.tipo});
+    const ingresoEgreso = new IngresoEgresoModel({ ... this.form.value});
 
     this.service.crear(ingresoEgreso)
       .then( () => {
@@ -57,6 +59,6 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     this.form.reset({
       monto: 0
     })
-  }
+   }
 
 }

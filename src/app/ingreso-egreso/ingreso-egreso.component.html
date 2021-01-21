@@ -2,14 +2,13 @@
     <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Agregar Ingreso / Egreso</h4>
-            <p class="card-description">
-              Especifique el monto y el tipo
-            </p>
-
+            <div style="background-color: #BAC8CB; padding: .5rem 0 0.3rem 0.6rem;">
+              <h4 class="card-title">Agregar Ingreso / Egreso</h4>
+            </div>
+            
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
               
-              <div class="form-group">
+              <div class="form-group mt-3">
                 <label>Descripción</label>
                 <input type="text" 
                        class="form-control" 
@@ -33,25 +32,40 @@
               <div class="form-group">
                   <label>Tipo</label>
                   <br>
-                  <button *ngIf="tipo === 'ingreso'" type="button" class="btn btn-primary btn-block" (click)="tipo = 'egreso'">Ingreso</button>
-                  <button *ngIf="tipo === 'egreso'" type="button" class="btn btn-warning btn-block" (click)=" tipo = 'ingreso'">Egreso</button>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="tipo"
+                          name="tipo" id="flexRadioDefault1" checked="tipo = 'ingreso'" [value]="'ingreso'">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Ingreso
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"  formControlName="tipo"
+                          name="tipo" id="flexRadioDefault2" checked="tipo = 'egreso'" [value]="'egreso'">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Egreso
+                    </label>
+                  </div>
+                 
               </div> 
  
               <hr>
-              <button *ngIf="!cargando" type="submit" class="btn btn-success mr-2" [disabled]="form.invalid">
-                <i class="fa fa-save"></i>
-                Agregar
-              </button>
+              <div class="row justify-content-end">
+                  <div>
+                    <button type="reset" class="btn btn-light">Cancelar</button>
 
-              
-                <button *ngIf="cargando" disabled class="btn btn-success mr-2">
-                  <i class="fa fa-spin fa-sync"></i>
-                  Espere por favor...
-                </button> 
-             
-              
-              <button type="reset" class="btn btn-light">Cancelar</button>
-
+                  <button *ngIf="!cargando" type="submit" class="btn btn-success mr-2" [disabled]="form.invalid">
+                    <i class="fa fa-save"></i>
+                    Agregar
+                  </button>
+                  </div>
+                  <div>
+                    <button *ngIf="cargando" disabled class="btn btn-success mr-2">
+                    <i class="fa fa-spin fa-sync"></i>
+                    Espere por favor...
+                  </button> 
+                  </div>
+              </div>
             </form>
           </div>
         </div>
